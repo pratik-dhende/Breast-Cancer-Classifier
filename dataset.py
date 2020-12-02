@@ -32,6 +32,7 @@ def target_count_plot():
 def mean_radius_count_plot():
     plt.figure(figsize = (20, 8))
     sns.countplot(x = cancer_df['mean radius'])
+    plt.xticks([])
 
     plt.show()
 
@@ -121,3 +122,15 @@ def dataset_preprocessing():
     pd.DataFrame(feature).to_csv("Datasets/feature.csv")
 
     print("Data preprocessing and data analyzing has been done.")
+
+def get_train_dataset():
+    return X_train_sc, y_train
+
+def get_val_dataset():
+    return X_val_sc, y_val
+
+def get_test_dataset():
+    return X_test_sc, y_test
+
+# load_dataset()
+# dataset_preprocessing()

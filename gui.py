@@ -17,10 +17,12 @@ def evaluate_model():
     accuracy_val = evaluate(X_val_sc, y_val, parameters)
 
 def evaluate_val(placeholder):
+    X_val_sc, y_val = get_val_dataset()
     accuracy_val = evaluate(X_val_sc, y_val, parameters)
     make_label(placeholder, f"Accuracy on Validation dataset: {round(accuracy_val, 2)} %", 40, 0.5, 0.3, 0.8, 0.1, 'n')
 
 def evaluate_test(placeholder):
+    X_test_sc,  y_test = get_test_dataset()
     accuracy_test = evaluate(X_test_sc, y_test, parameters)
     make_label(placeholder, f"Accuracy on Test dataset: {round(accuracy_test, 2)} %", 40, 0.5, 0.7, 0.8, 0.1, 'n')
 
@@ -43,9 +45,13 @@ def browseFiles(placeholder):
 def get_train_model_entries(layer_dims, learning_rate, iterations):
     global parameters
 
+    X_train_sc, y_train = get_train_dataset()
+
     layer_dims = list(map(int, (layer_dims.split(', '))))
     learning_rate = float(learning_rate)
     iterations = int(iterations)
+
+    # print(X_train_sc, y_train)
 
     parameters = L_layer_model(X_train_sc, y_train, layer_dims, print_cost = True)
 
@@ -96,11 +102,12 @@ def data_analysis_window():
     # Heatmap for correlation of features
     # Heatmap for correlation with target
 
-    b_countplot_target = make_button(c, "Count plot for target", 40, target_count_plot, 0.5, 0.1, 0.7, 0.1, 'n')
-    b_countplot_meanRadius = make_button(c, "Count plot for mean radius", 40, mean_radius_count_plot, 0.5, 0.3, 0.7, 0.1, 'n')
-    b_dataset_heatmap = make_button(c, "Dataset Heatmap", 40, dataset_heatmap, 0.5, 0.5, 0.7, 0.1, 'n')
-    b_feature_corr_heatmap = make_button(c, "Feature Correlation Heatmap", 40, feature_corr_heatmap, 0.5, 0.7, 0.7, 0.1, 'n')
-    b_target_corr_heatmap = make_button(c, "Target Correlation Heatmap", 40, target_corr_heatmap, 0.5, 0.9, 0.7, 0.1, 'n')
+    offset = 0.15
+    b_countplot_target = make_button(c, "Count plot for target", 40, target_count_plot, 0.5, 0.2 - offset, 0.7, 0.1, 'n')
+    b_countplot_meanRadius = make_button(c, "Count plot for mean radius", 40, mean_radius_count_plot, 0.5, 0.4 - offset, 0.7, 0.1, 'n')
+    b_dataset_heatmap = make_button(c, "Dataset Heatmap", 40, dataset_heatmap, 0.5, 0.6 - offset, 0.7, 0.1, 'n')
+    b_feature_corr_heatmap = make_button(c, "Feature Correlation Heatmap", 40, feature_corr_heatmap, 0.5, 0.8 - offset, 0.7, 0.1, 'n')
+    b_target_corr_heatmap = make_button(c, "Target Correlation Heatmap", 40, target_corr_heatmap, 0.5, 1 - offset, 0.7, 0.1, 'n')
 
 def train_model_window():
     window = tk.Toplevel(root)
@@ -158,12 +165,13 @@ canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
 canvas.pack()
 
 # Buttons
-b_load_dataset = make_button(canvas, "Load Dataset", 40, load_dataset, 0.5, 0.1, 0.3, 0.1, 'n')
-b_analysis_window = make_button(canvas, "Show Analysis", 40, data_analysis_window, 0.5, 0.3, 0.3, 0.1, 'n')
-b_data_preprocessing = make_button(canvas, "Data Preprocessing", 40, dataset_preprocessing, 0.5, 0.3, 0.5, 0.1, 'n')
-b_train_model = make_button(canvas, "Train Model", 40, train_model_window, 0.5, 0.5, 0.5, 0.1, 'n')
-b_train_model = make_button(canvas, "Train Model", 40, train_model_window, 0.5, 0.5, 0.5, 0.1, 'n')
-b_evaluate_model = make_button(canvas, "Evaluate trained model", 40, evaluate_window, 0.5, 0.7, 0.5, 0.1, 'n')
-b_predict = make_button(canvas, "Predict", 40, predict_window, 0.5, 0.85, 0.3, 0.1, 'n')
+offset = 0.1
+b_load_dataset = make_button(canvas, "Load Dataset", 40, load_dataset, 0.5, 0.16 - offset, 0.3, 0.1, 'n')
+b_analysis_window = make_button(canvas, "Show Analysis", 40, data_analysis_window, 0.5, 0.32 - offset, 0.3, 0.1, 'n')
+b_data_preprocessing = make_button(canvas, "Data Preprocessing", 40, dataset_preprocessing, 0.5, 0.48 - offset, 0.5, 0.1, 'n')
+b_train_model = make_button(canvas, "Train Model", 40, train_model_window, 0.5, 0.66 - offset, 0.5, 0.1, 'n')
+# b_train_model = make_button(canvas, "Train Model", 40, train_model_window, 0.5, 0.65, 0.5, 0.1, 'n')
+b_evaluate_model = make_button(canvas, "Evaluate trained model", 40, evaluate_window, 0.5, 0.82 - offset, 0.5, 0.1, 'n')
+b_predict = make_button(canvas, "Predict", 40, predict_window, 0.5, 0.96 - offset, 0.3, 0.1, 'n')
 
 root.mainloop()
