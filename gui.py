@@ -67,7 +67,7 @@ def make_file_browser(placeholder, _relx, _rely,_anchor, _font):
     label_file_explorer.place(relx=_relx, rely= _rely, anchor = _anchor)
 
     button_explore = tk.Button(placeholder, text = "Browse Files", command = lambda: browseFiles(placeholder), font = _font)
-    button_explore.place(relx=_relx, rely= _rely + 0.1, anchor = _anchor)
+    button_explore.place(relx=_relx, rely= _rely + 0.2, anchor = _anchor)
 
 def make_button(placeholder, _text, _font, _command, _relx, _rely, _relwidth, _relheight, _anchor):
     button = tk.Button(placeholder, text=_text, font=40, command=_command)
