@@ -1,7 +1,8 @@
 # Breast Cancer Classifier
-A program to classify breast cancer cells to either malignant or benign.
-The program uses a [Deep Neural Network](https://en.wikipedia.org/wiki/Deep_learning) to classify the cells.
-It gives the user insights into how a DNN model is trained and finally test it on a real world data.
+* A program to classify breast cancer cells to either malignant or benign. <br />
+* The program uses a [Deep Neural Network](https://en.wikipedia.org/wiki/Deep_learning) to classify the cells. <br />
+* It gives the user insights into how a DNN model is trained and finally test it on a feature. <br />
+* The dataset is loaded from sklearn.datasets
 
 ## Program flow
 The program takes the user through the whole process starting from loading the dataset to predicting a feature.
